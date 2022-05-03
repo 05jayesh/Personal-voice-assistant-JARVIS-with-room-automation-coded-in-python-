@@ -37,13 +37,13 @@ def assistant():
          return()
     elif 'light' in command:
         if 'off' in command:
-            talk('Turning on the lights.')
+            talk('Turning off the lights.')
             aio.send('lights', 0)
             lights = aio.receive("lights").value
             print ('lights state = ', lights)
             talk('Done')
         if 'on' in command:
-            talk('Turning off the lights')
+            talk('Turning on the lights')
             aio.send('lights', 1)
             lights = aio.receive("lights").value
             print ('lights state = ', lights)
@@ -51,13 +51,13 @@ def assistant():
         return()
     elif 'fan' in command or 'Fan' in command or 'pan' in command or 'Fan' in command:
         if 'off' in command:
-            talk('Turning on the fan')
+            talk('Turning of the fan')
             aio.send('fan', 0)
             fan = aio.receive("fan").value
             print ('fan state = ', fan)
             talk('Done')
         if 'on' in command:
-            talk('Turning off the fan')
+            talk('Turning on the fan')
             aio.send('fan', 1)
             fan = aio.receive("fan").value
             print ('fan state = ', fan)

@@ -4,6 +4,8 @@ import re
 import sys
 import datetime
 import math
+import requests
+requests.packages.urllib3.util.ssl_.DEFAULT_CIPHERS = "TLS13-CHACHA20-POLY1305-SHA256:TLS13-AES-128-GCM-SHA256:TLS13-AES-256-GCM-SHA384:ECDHE:!COMPLEMENTOFDEFAULT"
 from Adafruit_IO import Client, Feed, Data
 aio = Client(key='23b02f3337964e6ebc2ebd8d91a6d586', username='05jayesh')
 lights=0
@@ -34,13 +36,13 @@ def assistant():
          talk('Hello sir!')
          return()
     elif 'light' in command:
-        if 'on' in command:
+        if 'off' in command:
             talk('Turning on the lights.')
             aio.send('lights', 0)
             lights = aio.receive("lights").value
             print ('lights state = ', lights)
             talk('Done')
-        if 'off' in command:
+        if 'on' in command:
             talk('Turning off the lights')
             aio.send('lights', 1)
             lights = aio.receive("lights").value
@@ -48,13 +50,13 @@ def assistant():
             talk('Done')
         return()
     elif 'fan' in command or 'Fan' in command or 'pan' in command or 'Fan' in command:
-        if 'on' in command:
+        if 'off' in command:
             talk('Turning on the fan')
             aio.send('fan', 0)
             fan = aio.receive("fan").value
             print ('fan state = ', fan)
             talk('Done')
-        if 'off' in command:
+        if 'on' in command:
             talk('Turning off the fan')
             aio.send('fan', 1)
             fan = aio.receive("fan").value
